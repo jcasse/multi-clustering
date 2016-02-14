@@ -1,0 +1,94 @@
+Multi-clustering
+
+DESCRIPTION
+-----------
+
+This program clusters objects together based on a criterion function. The
+clusters are disjoint. The data can be multi-dimensional. The criterion
+function combinies the minimum description length (MDL) principle and
+information theory. The criterion function determines the number of bits
+necesary to encode the data without loss. The program minimizes the criterion
+function: the encoding with the fewest number of bits in some sense describes
+the data better. The MDL principle allows the program to compare encoding costs
+of solution with different number of clusters by splitting the cost function
+into two parts: the model and the data. As the encoding cost of the model
+increases, the cost of the data given that model decreases. The MDL-based cost
+function trades off both parts and the minimum is somewhere in the middle.
+
+USAGE
+-----
+
+type at command line: multi dir
+
+multi is the name of the executable
+dir is the directory (absolute) where the input data resides
+
+Example:
+
+multi /home/csgrads/cassej/Research/datasets/multi/binary_3d/
+
+The directory below must exist prior to running.
+
+/home/csgrads/cassej/Research/datasets/multi/binary_3d/multi-clustering/
+
+The output files will placed in a newly created directory within the directory
+above. The new directory created by the program is named as the time stamp.
+
+Input:
+
+Data: Text file encoding a matrix in list form: each column represents an index
+to a matrix way in order. For binary data the value of the matrix entry is
+implied as 1--non-existent entries imply a value of 0. The first line of the
+file must contain the following metadata separated by space.
+number-of-ways
+way-size-for-each-way
+number-of-modes
+way-to-which-each-mode-belongs (starting at zero)
+number-of-possible-entry-values
+The name of the data file must be data.txt.
+
+Labels: The data file encodes the data with integers representing indexes to
+objects. The labels file contains the actual names of the objects. The names
+of the objects are listed in order starting with the first way (0). Each way
+is separated by a blank line.
+The name of the labels files must be labels.txt
+
+Output:
+
+The output files are placed in a directory called 'multi-clustering' within the
+input data directory (dir). This directory must exist before running the
+program. The program creates an output directory within the multi-clustering
+directory for each run with a timestamp as its name.
+
+ALGORITHM
+---------
+
+1. Initialize each way to one cluster
+2. loop:
+3.      add cluster to way that minimizes cost
+4.        add cluster: split most costly cluster as per crossassocitaion paper
+5.          split cluster: move units the decrease block cost in order
+6.      regroup: optimize each way in turn until convergence
+7. until no more cost reduction
+
+CRITERION FUNCTION
+------------------
+MDL-based
+
+Model Encoding Cost:
+Cost of encoding cluster assigments for each matrix way: M * ln(K),
+where M is number of way elements and K is number of way clusters
+Cost of encoding block types (by encoding sufficient satistics in block):
+\sum_{v} \sum_{kl} (n_{kl}_v + 1), where n_{kl}_v is occurrence of value v
+
+Data Encoding Cost:
+Cost of encoding each element in each block according to block type (distr.)
+\sum_{kl} \sum_{v} #v ln(block_size / #v)
+
+OPPORTUNITY FOR PARALLELIZATION
+-------------------------------
+
+With respect to algorithm above:
+Line 3: check in parallel the cost of adding a cluster to each way.
+Line 4: check in parallel the cost of each cluster.
+:ine 6: re-asssign each unit in parallel.

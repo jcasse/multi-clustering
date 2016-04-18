@@ -1,6 +1,9 @@
-## Synopsis
+[//]: # (Markdown: dillinger.io/ shows a nice example of Markdown commands with a viewer.)
+[//]: # (Comments in Markdown: http://stackoverflow.com/questions/4823468/comments-in-markdown)
+[//]: # (C++ Project Structure: http://hiltmon.com/blog/2013/07/03/a-simple-c-plus-plus-project-structure/)
+[//]: # (C++ Library Creation: http://www.adp-gmbh.ch/cpp/gcc/create_lib.html)
 
-[//]: # (At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.))
+# Multi-clustering
 
 This program co-clusters multi-dimensional binary data matrices.
 A multi-clustering is a generalization of a co-clustering to any number of
@@ -15,49 +18,27 @@ sinergy, resulting in a potentially superior clustering (Inderjit S. Dhillon, Su
 
 Parts of this algorithm apply the strategy described in Deepayan Chakrabarti, Spiros Papadimitriou, Dharmendra S. Modha, and Christos Faloutsos. 2004. Fully automatic cross-associations. In Proceedings of the tenth ACM SIGKDD international conference on Knowledge discovery and data mining (KDD '04).
 
-## Code Example
+### Installation
 
-[//]: # (Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.)
+```sh
+$ git clone <git-repo-url>
+$ cd multi-clustering
+$ make
+```
+### Usage
 
-TODO
+```sh
+$ bin/multi-clustering --help
+```
 
-## Motivation
-
-[//]: # (A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.)
-
-To help with research.
-
-## Installation
-
-[//]: # (Provide code examples and explanations of how to get the project.)
-
-TODO
-
-## API Reference
-
-[//]: # (Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.)
-
-TODO
-
-## Tests
-
-[//]: # (Describe and show how to run the tests with code examples.)
-
-TODO
-
-## Contributors
-
-[//]: # (Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.)
-
-TODO
-
-## License
+License
+----
 
 [//]: # (A short snippet describing the license (MIT, Apache, etc.))
 
 [//]: # (http://choosealicense.com/)
 
-Copyright (C) 2013 Juan Casse
+Copyright (C) 2016 Juan Casse
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,4 +52,3 @@ Copyright (C) 2013 Juan Casse
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-

@@ -9,14 +9,14 @@ SHELL         := /bin/sh
 .RECIPEPREFIX := \t
 
 PROJECT       := $(shell basename $(CURDIR))
-TARGET        := bin/$(PROJECT)
+GOAL          := bin/$(PROJECT)
 
 SRCDIR        := src
 BLDDIR        := build
 DEPDIR        := .d
 
-SOURCES       := $(wildcard $(SRCDIR)/*.cpp)
-OBJECTS       := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.cpp=.o))
+SRC           := $(wildcard $(SRCDIR)/*.cpp)
+OBJ           := $(patsubst $(SRCDIR)/%,$(BLDDIR)/%,$(SRC:.cpp=.o))
 DEP           := $(patsubst $(SRCDIR)/%,$(DEPDIR)/%,$(SRC:.cpp=.d))
 
 CPP           := g++
@@ -35,7 +35,7 @@ POSTCOMPILE    = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
 ## rules
 ################################################################################
 
-$(GOAL): $(OBJECTS)
+$(GOAL): $(OBJ)
 	@echo "Linking..."
 	$(Link) $(OUTPUT_OPTION) $^
 

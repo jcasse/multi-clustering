@@ -21,7 +21,7 @@ Parts of this algorithm apply the strategy described in Deepayan Chakrabarti, Sp
 ### Installation
 
 ```sh
-$ git clone <git-repo-url>
+$ git clone git@github.com:jcasse/multi-clustering.git
 $ cd multi-clustering
 $ make
 ```
